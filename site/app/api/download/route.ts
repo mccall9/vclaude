@@ -18,16 +18,16 @@ export async function GET(req: NextRequest) {
   const check = await checkPayment(paymentId);
   if (!check.ok) return new NextResponse('Pagamento não está aprovado.', {status: 403});
 
-  const kitPath = path.join(process.cwd(), 'private', 'kinetiq-kit.zip');
+  const kitPath = path.join(process.cwd(), 'private', 'motion-pronto-kit.zip');
   if (!existsSync(kitPath)) {
-    console.error('download: private/kinetiq-kit.zip não está no deploy');
+    console.error('download: private/motion-pronto-kit.zip não está no deploy');
     return new NextResponse('O download está temporariamente indisponível. Seu pagamento está confirmado; tente de novo mais tarde.', {status: 503});
   }
   const file = await readFile(kitPath);
   return new NextResponse(new Uint8Array(file), {
     headers: {
       'Content-Type': 'application/zip',
-      'Content-Disposition': 'attachment; filename="kinetiq-kit.zip"',
+      'Content-Disposition': 'attachment; filename="motion-pronto-kit.zip"',
       'Cache-Control': 'private, no-store',
     },
   });

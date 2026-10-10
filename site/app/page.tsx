@@ -32,7 +32,7 @@ const uses = [
 ];
 
 const kit = [
-  {t: 'Skill Kinetiq para o Claude Code', d: 'Ensina o Claude a dirigir motion: ritmo, tipografia, paleta e receitas por tipo de vídeo.'},
+  {t: 'Skill Motion Pronto para o Claude Code', d: 'Ensina o Claude a dirigir motion: ritmo, tipografia, paleta e receitas por tipo de vídeo.'},
   {t: 'Projeto de vídeo pronto (Remotion)', d: '19 cenas editáveis: título, tipografia cinética, prompt, código, cartões, comparação, contador, logo, legendas e mais.'},
   {t: '21 transições', d: 'Glitch, whip, iris, flash, light leak, portas, persianas e outras, todas configuráveis.'},
   {t: '4 estilos visuais + tema da sua marca', d: 'Troque o visual inteiro com uma palavra, ou peça as cores da sua marca.'},
@@ -46,13 +46,13 @@ const kit = [
 
 const faqs = [
   {q: 'Preciso saber programar?', a: 'Não. Você descreve o vídeo em português e o Claude Code escreve o código. Você só precisa copiar e colar alguns comandos na instalação, e o guia mostra cada um.'},
-  {q: 'O Claude Code está incluso?', a: 'Não. O Claude Code é da Anthropic e exige um plano pago (Pro, Max, Team, Enterprise ou créditos de API no Console), contratado direto com eles. O Kinetiq é a skill e o projeto de vídeo que você usa junto com ele.'},
+  {q: 'O Claude Code está incluso?', a: 'Não. O Claude Code é da Anthropic e exige um plano pago (Pro, Max, Team, Enterprise ou créditos de API no Console), contratado direto com eles. O Motion Pronto é a skill e o projeto de vídeo que você usa junto com ele.'},
   {q: 'O vídeo é gerado na nuvem?', a: 'Não. A renderização acontece no seu computador, com o Remotion. Seus arquivos não saem da sua máquina.'},
   {q: 'Funciona no Windows?', a: 'Sim. O kit tem instalador para Windows 10 ou mais novo, macOS 13 ou mais novo e Linux.'},
   {q: 'Posso usar os vídeos comercialmente?', a: 'Sim, os vídeos que você cria são seus. O Remotion é gratuito para pessoas físicas e empresas com até 3 funcionários; empresas maiores precisam de uma licença do Remotion.'},
-  {q: 'O que o Kinetiq não faz?', a: 'Não gera imagens ou vídeos realistas por IA, nem faz edição de filmagem com cortes de câmera. Ele cria motion design: tipografia, formas, interfaces e legendas, e pode usar suas fotos e vídeos como parte das cenas.'},
+  {q: 'O que o Motion Pronto não faz?', a: 'Não gera imagens ou vídeos realistas por IA, nem faz edição de filmagem com cortes de câmera. Ele cria motion design: tipografia, formas, interfaces e legendas, e pode usar suas fotos e vídeos como parte das cenas.'},
   {q: 'Como recebo o kit?', a: 'Assim que o Mercado Pago aprovar o pagamento, você volta para o site e baixa o ZIP. Pix costuma aprovar na hora. Se fechar a página, use o número do pagamento e seu e-mail em “Acessar minha compra”.'},
-  {q: 'O Kinetiq é da Anthropic?', a: 'Não. O Kinetiq é um produto independente, sem afiliação com a Anthropic ou com o Remotion.'},
+  {q: 'O Motion Pronto é da Anthropic?', a: 'Não. O Motion Pronto é um produto independente, sem afiliação com a Anthropic ou com o Remotion.'},
 ];
 
 export default async function Home({searchParams}: {searchParams: Promise<{pagamento?: string}>}) {
@@ -87,7 +87,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
             <p className="fineprint">Pagamento único via Mercado Pago (Pix ou cartão). Requer Claude Code, vendido à parte pela Anthropic.</p>
           </div>
           <div className="phone">
-            <video src="/media/demo.mp4" poster="/media/demo-poster.jpg" autoPlay muted loop playsInline controls aria-label="Vídeo de demonstração feito com o Kinetiq" />
+            <video src="/media/demo.mp4" poster="/media/demo-poster.jpg" autoPlay muted loop playsInline controls aria-label="Vídeo de demonstração feito com o Motion Pronto" />
           </div>
         </div>
       </section>
@@ -97,14 +97,14 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
           <div className="section-head">
             <span className="mono">Exemplo</span>
             <h2>Um pedido. Um vídeo.</h2>
-            <p>O vídeo de demonstração aqui no topo foi feito assim, com o próprio Kinetiq. Os ajustes também são por conversa.</p>
+            <p>O vídeo de demonstração aqui no topo foi feito assim, com o próprio Motion Pronto. Os ajustes também são por conversa.</p>
           </div>
           <div className="prompt-demo">
             <div className="terminal">
-              <div className="dim">~/kinetiq $ claude</div>
+              <div className="dim">~/motion-pronto $ claude</div>
               <br />
               <div>
-                <span className="you">› </span>cria um vídeo vertical de 25 segundos apresentando o Kinetiq: abre com uma palavra de impacto, mostra alguém digitando
+                <span className="you">› </span>cria um vídeo vertical de 25 segundos apresentando o Motion Pronto: abre com uma palavra de impacto, mostra alguém digitando
                 um pedido, o código, o fluxo até o MP4, o que vem no kit, um antes e depois, o logo e um botão de compra. Tema ember.
               </div>
               <br />
@@ -267,9 +267,9 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
 
       <footer className="footer">
         <div className="wrap">
-          <span className="logo">Kinetiq</span>
+          <span className="logo">Motion Pronto</span>
           <p>
-            Kinetiq é um produto independente e não tem afiliação, patrocínio ou aprovação da Anthropic ou do Remotion. Claude e Claude Code são marcas da
+            Motion Pronto é um produto independente e não tem afiliação, patrocínio ou aprovação da Anthropic ou do Remotion. Claude e Claude Code são marcas da
             Anthropic. Remotion é marca de seus respectivos donos.
           </p>
           <p>

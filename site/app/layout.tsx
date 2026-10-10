@@ -16,11 +16,11 @@ const mono = localFont({src: './fonts/jetbrains-mono-latin-400-normal.woff2', we
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL ?? 'http://localhost:3000'),
-  title: 'Kinetiq · motion design por prompt',
+  title: 'Motion Pronto · motion design por prompt',
   description:
     'Descreva o vídeo em português e o Claude Code cria a animação e entrega o MP4. 19 cenas, 21 transições e 4 estilos, sem After Effects.',
   openGraph: {
-    title: 'Kinetiq · motion design por prompt',
+    title: 'Motion Pronto · motion design por prompt',
     description: 'Descreva em português, receba o MP4. Sem After Effects, sem timeline.',
     images: ['/media/demo-poster.jpg'],
     locale: 'pt_BR',
@@ -38,9 +38,9 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
           <div className="wrap nav-inner">
             <Link href="/" className="logo">
               <span className="logo-mark">
-                <span>K</span>
+                <span>M</span>
               </span>
-              Kinetiq
+              Motion Pronto
             </Link>
             <nav className="nav-links" aria-label="Seções">
               <a href="/#como-funciona">Como funciona</a>

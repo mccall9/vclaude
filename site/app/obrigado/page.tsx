@@ -3,7 +3,7 @@ import {checkPayment} from '@/lib/mercadopago';
 import {createDownloadToken} from '@/lib/token';
 
 export const dynamic = 'force-dynamic';
-export const metadata: Metadata = {title: 'Sua compra · Kinetiq', robots: {index: false}};
+export const metadata: Metadata = {title: 'Sua compra · Motion Pronto', robots: {index: false}};
 
 type Search = {payment_id?: string; collection_id?: string; email?: string; external_reference?: string};
 
@@ -49,7 +49,7 @@ export default async function Obrigado({searchParams}: {searchParams: Promise<Se
                 <span className="mono">Pagamento aprovado</span>
                 <h2>Obrigado! Seu kit está pronto.</h2>
                 <a className="btn btn-primary" href={`/api/download?t=${encodeURIComponent(token)}`}>
-                  Baixar o Kinetiq (.zip)
+                  Baixar o Motion Pronto (.zip)
                 </a>
                 <p style={{color: 'var(--muted)'}}>
                   Extraia o ZIP e siga o arquivo <strong>LEIA-ME.md</strong>. Guarde o número do pagamento <strong>{paymentId}</strong>: com ele e seu
@@ -82,7 +82,7 @@ export default async function Obrigado({searchParams}: {searchParams: Promise<Se
                 <p style={{color: 'var(--muted)'}}>
                   {state === 'missing'
                     ? 'Informe o número do pagamento para acessar sua compra.'
-                    : 'Não encontramos um pagamento aprovado do Kinetiq com esses dados. Confira o número do pagamento no comprovante do Mercado Pago e o e-mail usado na compra.'}
+                    : 'Não encontramos um pagamento aprovado do Motion Pronto com esses dados. Confira o número do pagamento no comprovante do Mercado Pago e o e-mail usado na compra.'}
                 </p>
                 <a className="btn btn-primary" href="/acesso">
                   Acessar minha compra

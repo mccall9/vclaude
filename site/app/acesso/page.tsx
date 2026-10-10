@@ -1,6 +1,6 @@
 import type {Metadata} from 'next';
 
-export const metadata: Metadata = {title: 'Acessar minha compra · Kinetiq', robots: {index: false}};
+export const metadata: Metadata = {title: 'Acessar minha compra · Motion Pronto', robots: {index: false}};
 
 /** Recuperação de acesso: número do pagamento + e-mail usado no Mercado Pago. */
 export default function Acesso() {

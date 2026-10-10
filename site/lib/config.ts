@@ -2,10 +2,10 @@
 export const config = {
   price: Number(process.env.KIT_PRICE ?? '19.90'),
   siteUrl: (process.env.SITE_URL ?? 'http://localhost:3000').replace(/\/$/, ''),
-  productId: 'kinetiq-kit',
-  productTitle: 'Kinetiq · kit de motion design por prompt',
+  productId: 'motion-pronto-kit',
+  productTitle: 'Motion Pronto · kit de motion design por prompt',
   /** Prefixo do external_reference: garante que o pagamento é deste produto */
-  refPrefix: 'kinetiq-',
+  refPrefix: 'motionpronto-',
 };
 
 export const formatPrice = (n: number) =>

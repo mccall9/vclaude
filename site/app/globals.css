@@ -626,3 +626,18 @@ section {
     transition: none;
   }
 }
+
+.logo {
+  white-space: nowrap;
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 14px;
+    gap: 8px;
+  }
+  .nav .btn {
+    padding: 9px 14px;
+    font-size: 14px;
+  }
+}

@@ -31,7 +31,7 @@ export const createCheckout = async (): Promise<string> => {
         failure: `${config.siteUrl}/?pagamento=falhou`,
       },
       auto_return: 'approved',
-      statement_descriptor: 'KINETIQ',
+      statement_descriptor: 'MOTIONPRONTO',
     }),
     cache: 'no-store',
   });
