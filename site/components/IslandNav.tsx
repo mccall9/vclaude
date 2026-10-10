@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect, useState} from 'react';
+import {Logo} from './Logo';
 
 const links = [
   {href: '/#como-funciona', id: 'como-funciona', label: 'Como funciona'},
@@ -39,10 +40,7 @@ export const IslandNav = () => {
     <>
       <header className="island">
         <a href="/" className="brand" aria-label="Motion Pronto, início">
-          <span className="brand-mark" aria-hidden="true">
-            M
-          </span>
-          Motion Pronto
+          <Logo />
         </a>
         <nav className="nav-links" aria-label="Seções">
           {links.map((l) => (

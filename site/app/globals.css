@@ -25,6 +25,7 @@
 }
 
 html {
+  overflow-x: clip;
   scroll-behavior: smooth;
   scroll-padding-top: 96px;
 }
@@ -264,17 +265,7 @@ summary:focus-visible,
   border-radius: 8px;
 }
 
-.brand-mark {
-  width: 24px;
-  height: 24px;
-  border-radius: 8px;
-  display: grid;
-  place-items: center;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 14px;
-  font-weight: 700;
-}
+
 
 .nav-links {
   display: none;
@@ -1278,4 +1269,28 @@ section {
     transform: none;
     filter: none;
   }
+}
+
+/* Celulares bem estreitos (320 px) */
+@media (max-width: 360px) {
+  .brand span {
+    display: none;
+  }
+  .hero h1 {
+    font-size: 30px;
+    line-height: 36px;
+  }
+  .btn {
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+}
+
+/* Itens de grade podem encolher (códigos longos rolam por dentro) */
+.steps > *,
+.bento > *,
+.convo > *,
+.facts > * {
+  min-width: 0;
 }

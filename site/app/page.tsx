@@ -12,6 +12,7 @@ import {
   Sparkle,
   TextAa,
 } from '@phosphor-icons/react/dist/ssr';
+import {Logo} from '@/components/Logo';
 import {Reveal} from '@/components/Reveal';
 import {Tagline} from '@/components/Tagline';
 import {config, formatPrice} from '@/lib/config';
@@ -147,7 +148,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               <span>›</span> cria um vídeo de 25s apresentando o Motion Pronto, tema ember
             </div>
             <div className="float float-done glass mono" aria-hidden="true">
-              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 27,9 s
+              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 28,3 s
             </div>
           </Reveal>
         </div>
@@ -306,7 +307,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
                 </p>
                 <p className="claude">● Abri a prévia no navegador. Escolhi 8 cenas e 7 transições.</p>
                 <p className="claude">● Conferi os quadros: nenhum texto saindo da tela.</p>
-                <p className="claude">● Pronto: out/demo.mp4 (27,9 s · 1080×1920 · com som)</p>
+                <p className="claude">● Pronto: out/demo.mp4 (28,3 s · 1080×1920 · com som)</p>
                 <p>
                   <span className="you">› </span>deixa o final mais lento e faz uma versão horizontal
                 </p>
@@ -401,10 +402,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
       <footer className="footer">
         <div className="wrap">
           <span className="brand">
-            <span className="brand-mark" aria-hidden="true">
-              M
-            </span>
-            Motion Pronto
+            <Logo />
           </span>
           <nav aria-label="Rodapé">
             <a href="/acesso">Acessar minha compra</a>
