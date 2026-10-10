@@ -41,45 +41,45 @@ export default async function Obrigado({searchParams}: {searchParams: Promise<Se
 
   return (
     <main>
-      <section className="simple">
-        <div className="wrap" style={{display: 'grid', placeItems: 'center'}}>
-          <div className="card">
+      <section className="page">
+        <div className="wrap">
+          <div className="glass">
             {state === 'ok' ? (
               <>
-                <span className="mono">Pagamento aprovado</span>
-                <h2>Obrigado! Seu kit está pronto.</h2>
+                <span className="eyebrow">Pagamento aprovado</span>
+                <h1>Obrigado! Seu kit está pronto.</h1>
                 <a className="btn btn-primary" href={`/api/download?t=${encodeURIComponent(token)}`}>
                   Baixar o Motion Pronto (.zip)
                 </a>
-                <p style={{color: 'var(--muted)'}}>
+                <p className="muted">
                   Extraia o ZIP e siga o arquivo <strong>LEIA-ME.md</strong>. Guarde o número do pagamento <strong>{paymentId}</strong>: com ele e seu
                   e-mail você baixa de novo quando quiser, em “Acessar minha compra”.
                 </p>
               </>
             ) : state === 'pending' ? (
               <>
-                <span className="mono">Aguardando aprovação</span>
-                <h2>Quase lá</h2>
-                <p style={{color: 'var(--muted)'}}>
+                <span className="eyebrow">Aguardando aprovação</span>
+                <h1>Quase lá</h1>
+                <p className="muted">
                   O Mercado Pago ainda está processando o pagamento <strong>{paymentId}</strong>. Pix costuma levar segundos; boleto, até 2 dias úteis.
                   Atualize esta página daqui a pouco.
                 </p>
-                <a className="btn btn-ghost" href={retryHref}>
+                <a className="link" href={retryHref}>
                   Verificar de novo
                 </a>
               </>
             ) : state === 'error' ? (
               <>
-                <h2>Não conseguimos verificar agora</h2>
-                <p style={{color: 'var(--muted)'}}>O Mercado Pago não respondeu. Seu pagamento está seguro. Tente de novo em alguns minutos.</p>
-                <a className="btn btn-ghost" href={retryHref}>
+                <h1>Não conseguimos verificar agora</h1>
+                <p className="muted">O Mercado Pago não respondeu. Seu pagamento está seguro. Tente de novo em alguns minutos.</p>
+                <a className="link" href={retryHref}>
                   Tentar de novo
                 </a>
               </>
             ) : (
               <>
-                <h2>Compra não encontrada</h2>
-                <p style={{color: 'var(--muted)'}}>
+                <h1>Compra não encontrada</h1>
+                <p className="muted">
                   {state === 'missing'
                     ? 'Informe o número do pagamento para acessar sua compra.'
                     : 'Não encontramos um pagamento aprovado do Motion Pronto com esses dados. Confira o número do pagamento no comprovante do Mercado Pago e o e-mail usado na compra.'}

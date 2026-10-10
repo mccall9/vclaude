@@ -1,58 +1,80 @@
+import {
+  ArrowRight,
+  ArrowsOutSimple,
+  CheckCircle,
+  Eye,
+  FilmSlate,
+  Lightning,
+  Palette,
+  Plus,
+  ShieldCheck,
+  SpeakerHigh,
+  Sparkle,
+  TextAa,
+} from '@phosphor-icons/react/dist/ssr';
+import {Reveal} from '@/components/Reveal';
+import {Tagline} from '@/components/Tagline';
 import {config, formatPrice} from '@/lib/config';
 
-const BuyForm = ({label, big}: {label: string; big?: boolean}) => (
+const BuyButton = ({label}: {label: string}) => (
   <form action="/api/checkout" method="post">
-    <button type="submit" className="btn btn-primary" style={big ? {padding: '18px 36px', fontSize: 19} : undefined}>
+    <button type="submit" className="btn btn-primary">
       {label}
+      <ArrowRight size={18} weight="bold" aria-hidden="true" />
     </button>
   </form>
 );
 
+const styles = [
+  {name: 'Ember', d: 'escuro com laranja', img: '/media/tema-0.jpg'},
+  {name: 'Neon', d: 'ciano e magenta', img: '/media/tema-1.jpg'},
+  {name: 'Paper', d: 'editorial claro', img: '/media/tema-2.jpg'},
+  {name: 'Mono', d: 'preto e branco', img: '/media/tema-3.jpg'},
+];
+
+const scenes = ['título', 'tipografia cinética', 'impacto', 'prompt', 'código', 'cartões', 'antes e depois', 'contador', 'logo', 'legendas', 'chamada final', '+8'];
+
+// Alturas fixas: a onda do card de som é sempre igual
+const wave = [18, 34, 22, 46, 30, 14, 40, 26, 48, 20, 36, 12, 28, 44, 24, 16, 38, 30, 46, 22];
+
 const steps = [
-  {t: 'Prepare o computador', d: 'Instale o Node.js e o Claude Code. O guia do kit mostra o passo a passo no macOS, Windows e Linux.'},
-  {t: 'Rode o instalador', d: 'Um comando confere o kit, copia o projeto, instala a skill e baixa as dependências.'},
-  {t: 'Descreva o vídeo', d: 'Em português, do seu jeito: duração, formato, clima, textos. O Claude escolhe cenas, estilo e transições.'},
-  {t: 'Receba o MP4', d: 'O Claude escreve o roteiro em código, confere os quadros e renderiza o vídeo no seu computador.'},
+  {
+    t: 'Instale uma vez',
+    d: 'Baixe o kit, rode o instalador e pronto. Ele confere o Node.js, copia o projeto e coloca a skill no Claude Code.',
+    code: 'bash instalar.sh',
+  },
+  {
+    t: 'Descreva o vídeo',
+    d: 'Fale como falaria com um editor: duração, formato, clima, textos, cores da marca. O Claude escolhe cenas, estilo e transições.',
+    code: '› vinheta de 15s pro meu Reels, tema neon',
+  },
+  {
+    t: 'Ajuste e receba o MP4',
+    d: 'Acompanhe a prévia no navegador, peça mudanças por conversa e receba o vídeo com som na pasta do projeto.',
+    code: '✓ out/vinheta.mp4 · 15,2 s · 1080×1920',
+  },
 ];
 
-const themes = [
-  {name: 'Ember', d: 'Escuro, laranja, interface técnica', img: '/media/tema-0.jpg'},
-  {name: 'Neon', d: 'Ciano e magenta, synthwave', img: '/media/tema-1.jpg'},
-  {name: 'Paper', d: 'Editorial claro com serifa', img: '/media/tema-2.jpg'},
-  {name: 'Mono', d: 'Brutalista, preto e branco', img: '/media/tema-3.jpg'},
-];
-
-const transitions = ['fade', 'slide', 'push', 'zoom', 'zoomBlur', 'whip', 'wipe', 'iris', 'diamond', 'blinds', 'shutter', 'glitch', 'flash', 'dip', 'flip', 'spin', 'stretch', 'clock', 'doors', 'lightLeak', 'bars'];
-
-const uses = [
-  {t: 'Vinhetas e aberturas', d: 'Intro do canal, abertura de aula, assinatura de marca.'},
-  {t: 'Reels, TikTok e Shorts', d: 'Vídeos verticais com gancho forte nos primeiros segundos.'},
-  {t: 'Anúncios animados', d: 'Oferta, benefícios, preço e chamada para ação em 15 segundos.'},
-  {t: 'Legendas animadas', d: 'Legendas palavra por palavra por cima do seu vídeo.'},
-];
-
-const kit = [
-  {t: 'Skill Motion Pronto para o Claude Code', d: 'Ensina o Claude a dirigir motion: ritmo, tipografia, paleta e receitas por tipo de vídeo.'},
-  {t: 'Projeto de vídeo pronto (Remotion)', d: '19 cenas editáveis: título, tipografia cinética, prompt, código, cartões, comparação, contador, logo, legendas e mais.'},
-  {t: '21 transições', d: 'Glitch, whip, iris, flash, light leak, portas, persianas e outras, todas configuráveis.'},
-  {t: '4 estilos visuais + tema da sua marca', d: 'Troque o visual inteiro com uma palavra, ou peça as cores da sua marca.'},
-  {t: 'Efeitos sonoros automáticos', d: 'Whoosh nas transições, impacto, teclas e pops no tempo certo. Sons próprios, livres para uso comercial.'},
-  {t: 'Texto que se ajusta sozinho', d: 'Títulos diminuem para caber na tela, mesmo com palavras longas no vertical.'},
-  {t: 'Prévia ao vivo', d: 'Acompanhe o vídeo sendo montado no navegador e peça ajustes antes de gerar o MP4.'},
-  {t: '3 formatos', d: 'Vertical 9:16, horizontal 16:9 e quadrado 1:1 a partir do mesmo roteiro.'},
-  {t: 'Instalador para macOS, Windows e Linux', d: 'Confere o kit e o Node.js antes de copiar qualquer coisa.'},
-  {t: 'Guia de problemas comuns', d: 'O Claude consulta sozinho quando algo dá errado e explica a solução.'},
+const includes = [
+  'Skill Motion Pronto para o Claude Code',
+  'Projeto de vídeo com 19 cenas e 21 transições',
+  '4 estilos prontos e tema com as cores da sua marca',
+  'Efeitos sonoros próprios, livres para uso comercial',
+  'Instalador para macOS, Windows e Linux',
+  'Atualizações da versão 1',
 ];
 
 const faqs = [
-  {q: 'Preciso saber programar?', a: 'Não. Você descreve o vídeo em português e o Claude Code escreve o código. Você só precisa copiar e colar alguns comandos na instalação, e o guia mostra cada um.'},
-  {q: 'O Claude Code está incluso?', a: 'Não. O Claude Code é da Anthropic e exige um plano pago (Pro, Max, Team, Enterprise ou créditos de API no Console), contratado direto com eles. O Motion Pronto é a skill e o projeto de vídeo que você usa junto com ele.'},
-  {q: 'O vídeo é gerado na nuvem?', a: 'Não. A renderização acontece no seu computador, com o Remotion. Seus arquivos não saem da sua máquina.'},
-  {q: 'Funciona no Windows?', a: 'Sim. O kit tem instalador para Windows 10 ou mais novo, macOS 13 ou mais novo e Linux.'},
+  {q: 'Preciso saber programar?', a: 'Não. Você descreve o vídeo em português e o Claude Code escreve o código. Na instalação você cola dois comandos, e o guia mostra cada um.'},
+  {q: 'O Claude Code está incluso?', a: 'Não. O Claude Code é da Anthropic e pede um plano pago (Pro, Max, Team, Enterprise ou créditos no Console), contratado direto com eles. O Motion Pronto é a skill e o projeto de vídeo que você usa junto.'},
+  {q: 'O que eu preciso ter no computador?', a: 'macOS 13 ou mais novo, Windows 10 ou mais novo, ou Linux. Node.js 18 ou mais novo (gratuito, em nodejs.org) e uns 600 MB livres. O instalador confere tudo antes de começar.'},
+  {q: 'O vídeo é gerado na nuvem?', a: 'Não. Tudo roda no seu computador, com o Remotion. Seus arquivos não saem da sua máquina.'},
+  {q: 'Os vídeos têm som?', a: 'Sim. Transições, impactos, digitação e contadores vêm com efeitos sonoros no tempo certo. Você pode baixar o volume, desligar ou colocar a sua música.'},
   {q: 'Posso usar os vídeos comercialmente?', a: 'Sim, os vídeos que você cria são seus. O Remotion é gratuito para pessoas físicas e empresas com até 3 funcionários; empresas maiores precisam de uma licença do Remotion.'},
-  {q: 'O que o Motion Pronto não faz?', a: 'Não gera imagens ou vídeos realistas por IA, nem faz edição de filmagem com cortes de câmera. Ele cria motion design: tipografia, formas, interfaces e legendas, e pode usar suas fotos e vídeos como parte das cenas.'},
-  {q: 'Como recebo o kit?', a: 'Assim que o Mercado Pago aprovar o pagamento, você volta para o site e baixa o ZIP. Pix costuma aprovar na hora. Se fechar a página, use o número do pagamento e seu e-mail em “Acessar minha compra”.'},
-  {q: 'O Motion Pronto é da Anthropic?', a: 'Não. O Motion Pronto é um produto independente, sem afiliação com a Anthropic ou com o Remotion.'},
+  {q: 'O que o Motion Pronto não faz?', a: 'Não gera imagens ou vídeos realistas por IA e não edita filmagem com cortes de câmera. Ele faz motion design: tipografia, formas, interfaces e legendas, e pode usar suas fotos e vídeos dentro das cenas.'},
+  {q: 'Como recebo o kit?', a: 'Assim que o Mercado Pago aprovar o pagamento, você volta para o site e baixa o ZIP. Pix costuma aprovar na hora. Se fechar a página, use o número do pagamento e seu email em “Acessar minha compra”.'},
+  {q: 'E se eu me arrepender?', a: 'Você tem 7 dias a partir da compra para pedir o dinheiro de volta, sem precisar explicar o motivo. Peça pelo próprio Mercado Pago, na tela do pagamento.'},
+  {q: 'O Motion Pronto é da Anthropic?', a: 'Não. É um produto independente, sem afiliação com a Anthropic ou com o Remotion.'},
 ];
 
 export default async function Home({searchParams}: {searchParams: Promise<{pagamento?: string}>}) {
@@ -61,16 +83,27 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
 
   return (
     <main>
+      {/* ---------------- Hero ---------------- */}
+      <div className="ambient" aria-hidden="true">
+        <video src="/media/demo.mp4" autoPlay muted loop playsInline preload="metadata" tabIndex={-1} />
+      </div>
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">
-            <span className="badge mono">Skill para Claude Code</span>
-            <h1>
-              Motion design <span className="accent">profissional</span>. Você só descreve.
-            </h1>
-            <p className="lead">
-              Peça o vídeo em português e o Claude Code cria a animação, confere cada cena e entrega o MP4. Sem After Effects, sem timeline, sem keyframe.
-            </p>
+            <Reveal className="chip glass">
+              <b>Novo</b> Skill para o Claude Code
+            </Reveal>
+            <Reveal delay={80}>
+              <h1>
+                <span>Seu próximo motion</span> <span>sai de uma frase.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={160}>
+              <p className="lead">
+                Descreva o vídeo em português. O Claude Code monta as cenas, coloca os sons e entrega o MP4 no seu computador. Sem After Effects,
+                sem timeline.
+              </p>
+            </Reveal>
             {pagamento ? (
               <p className="notice" role="status">
                 {pagamento === 'falhou'
@@ -78,202 +111,309 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
                   : 'O checkout está indisponível agora. Tente de novo em alguns minutos.'}
               </p>
             ) : null}
-            <div className="hero-actions">
-              <BuyForm label={`Comprar por ${price}`} />
-              <a href="#exemplo" className="btn btn-ghost">
-                Ver um exemplo
+            <Reveal delay={240} className="hero-actions">
+              <BuyButton label={`Quero o Motion Pronto · ${price}`} />
+              <a href="#como-funciona" className="link">
+                Como funciona
               </a>
-            </div>
-            <p className="fineprint">Pagamento único via Mercado Pago (Pix ou cartão). Requer Claude Code, vendido à parte pela Anthropic.</p>
+            </Reveal>
+            <Reveal delay={320} className="proof">
+              <span>
+                <Lightning size={16} weight="fill" aria-hidden="true" /> Pagamento único
+              </span>
+              <span>
+                <ShieldCheck size={16} weight="fill" aria-hidden="true" /> 7 dias para pedir reembolso
+              </span>
+              <span>
+                <SpeakerHigh size={16} weight="fill" aria-hidden="true" /> Vídeos com som
+              </span>
+            </Reveal>
           </div>
-          <div className="phone">
-            <video src="/media/demo.mp4" poster="/media/demo-poster.jpg" autoPlay muted loop playsInline controls aria-label="Vídeo de demonstração feito com o Motion Pronto" />
+
+          <Reveal delay={200} className="stage">
+            <div className="phone glass">
+              <video
+                src="/media/demo.mp4"
+                poster="/media/demo-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                controls
+                aria-label="Vídeo de demonstração feito com o Motion Pronto"
+              />
+            </div>
+            <div className="float float-prompt glass mono" aria-hidden="true">
+              <span>›</span> cria um vídeo de 25s apresentando o Motion Pronto, tema ember
+            </div>
+            <div className="float float-done glass mono" aria-hidden="true">
+              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 27,9 s
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- Frase ---------------- */}
+      <section className="tagline" aria-label="O que o Motion Pronto faz">
+        <div className="wrap">
+          <Tagline text="Você escreve uma frase. O Claude escreve cada cena em código. Seu computador transforma tudo em *vídeo,* quadro a quadro." />
+        </div>
+      </section>
+
+      {/* ---------------- Como funciona ---------------- */}
+      <section id="como-funciona">
+        <div className="wrap">
+          <Reveal className="head">
+            <span className="eyebrow">Como funciona</span>
+            <h2>Três passos, uma conversa</h2>
+            <p>O Claude não “desenha” o vídeo como uma IA de imagem. Ele escreve cada cena, confere os quadros e só então renderiza.</p>
+          </Reveal>
+          <div className="steps">
+            {steps.map((s, i) => (
+              <Reveal key={s.t} delay={i * 100} className="step glass">
+                <span className="n">0{i + 1}</span>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+                <code>{s.code}</code>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* ---------------- O que vem ---------------- */}
+      <section id="o-que-vem">
+        <div className="wrap">
+          <Reveal className="head">
+            <span className="eyebrow">O que vem no kit</span>
+            <h2>Tudo que um motion precisa, já pronto</h2>
+            <p>Cenas, transições, estilos e sons pensados juntos. O Claude combina as peças; você decide o tom.</p>
+          </Reveal>
+          <div className="bento">
+            <Reveal className="cell glass b-styles">
+              <div className="icon">
+                <Palette size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>4 estilos e o da sua marca</h3>
+              <p>Troque o visual inteiro com uma palavra, ou passe as cores da marca e ganhe um tema só seu.</p>
+              <div className="styles-grid">
+                {styles.map((s) => (
+                  <figure key={s.name}>
+                    <img src={s.img} alt={`Título no estilo ${s.name}`} loading="lazy" />
+                    <figcaption>
+                      <strong>{s.name}</strong> · {s.d}
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={100} className="cell glass b-trans">
+              <div className="icon">
+                <FilmSlate size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>21 transições</h3>
+              <p>Rápidas para Reels, lentas para clima de cinema. Glitch, whip, iris, flash, portas e mais.</p>
+              <video
+                className="trans-video"
+                src="/media/transicoes.mp4"
+                poster="/media/transicoes-poster.jpg"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="none"
+                aria-label="As 21 transições em sequência"
+              />
+            </Reveal>
+
+            <Reveal className="cell glass b-sound">
+              <div className="icon">
+                <SpeakerHigh size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>Som no tempo certo</h3>
+              <p>Whoosh nos cortes, impacto nas palavras grandes, teclas na digitação.</p>
+              <div className="wave" aria-hidden="true">
+                {wave.map((h, i) => (
+                  <i key={i} style={{height: h}} />
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={100} className="cell glass b-fit">
+              <div className="icon">
+                <TextAa size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>Texto que sempre cabe</h3>
+              <p>Palavras longas diminuem sozinhas para não sair da tela no celular.</p>
+              <div className="fit-demo" aria-hidden="true">
+                INACREDITAVELMENTE
+              </div>
+            </Reveal>
+
+            <Reveal className="cell glass b-scenes">
+              <div className="icon">
+                <Sparkle size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>19 cenas prontas</h3>
+              <p>Cada uma com animação, ritmo e som já ajustados. O Claude cria cenas novas quando precisa.</p>
+              <div className="tags">
+                {scenes.map((s) => (
+                  <span key={s} className="tag">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={100} className="cell glass b-formats">
+              <div className="icon">
+                <Eye size={22} weight="duotone" aria-hidden="true" />
+              </div>
+              <h3>Prévia ao vivo, 3 formatos</h3>
+              <p>Veja o vídeo no navegador enquanto ele é montado. Vertical, horizontal e quadrado do mesmo roteiro.</p>
+              <div className="formats" aria-hidden="true">
+                <div style={{width: 45, height: 80}}>9:16</div>
+                <div style={{width: 128, height: 72}}>16:9</div>
+                <div style={{width: 72, height: 72}}>1:1</div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Exemplo ---------------- */}
       <section id="exemplo">
         <div className="wrap">
-          <div className="section-head">
-            <span className="mono">Exemplo</span>
-            <h2>Um pedido. Um vídeo.</h2>
-            <p>O vídeo de demonstração aqui no topo foi feito assim, com o próprio Motion Pronto. Os ajustes também são por conversa.</p>
-          </div>
-          <div className="prompt-demo">
-            <div className="terminal">
-              <div className="dim">~/motion-pronto $ claude</div>
-              <br />
-              <div>
-                <span className="you">› </span>cria um vídeo vertical de 25 segundos apresentando o Motion Pronto: abre com uma palavra de impacto, mostra alguém digitando
-                um pedido, o código, o fluxo até o MP4, o que vem no kit, um antes e depois, o logo e um botão de compra. Tema ember.
+          <Reveal className="head">
+            <span className="eyebrow">Na prática</span>
+            <h2>O vídeo do topo saiu desta conversa</h2>
+            <p>E os ajustes também são por conversa: mais lento, outro estilo, versão horizontal.</p>
+          </Reveal>
+          <div className="convo">
+            <Reveal className="glass terminal">
+              <div className="term-bar" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <span className="mono">~/motion-pronto · claude</span>
               </div>
-              <br />
-              <div className="dim">● Escolhi 8 cenas e 7 transições, conferi os quadros e renderizei.</div>
-              <div className="dim">● Pronto: out/demo.mp4 (26,7 s, 1080×1920)</div>
-              <br />
-              <div>
-                <span className="you">› </span>deixa o final mais rápido e faz uma versão horizontal
+              <div className="term-body">
+                <p>
+                  <span className="you">› </span>cria um vídeo vertical de 25 segundos apresentando o Motion Pronto. Abre com uma palavra de impacto, mostra
+                  alguém digitando um pedido, o código, o fluxo até o MP4, o que vem no kit, um antes e depois, o logo e um botão de compra. Tema
+                  ember.
+                </p>
+                <p className="claude">● Abri a prévia no navegador. Escolhi 8 cenas e 7 transições.</p>
+                <p className="claude">● Conferi os quadros: nenhum texto saindo da tela.</p>
+                <p className="claude">● Pronto: out/demo.mp4 (27,9 s · 1080×1920 · com som)</p>
+                <p>
+                  <span className="you">› </span>deixa o final mais lento e faz uma versão horizontal
+                </p>
               </div>
-            </div>
-            <div className="grid grid-2">
-              {uses.map((u) => (
-                <div className="card" key={u.t}>
-                  <h3>{u.t}</h3>
-                  <p>{u.d}</p>
-                </div>
+            </Reveal>
+            <div className="facts">
+              {[
+                ['19', 'cenas prontas'],
+                ['21', 'transições'],
+                ['10', 'efeitos sonoros'],
+                ['3', 'formatos de vídeo'],
+              ].map(([n, l], i) => (
+                <Reveal key={l} delay={i * 80} className="fact glass">
+                  <strong>{n}</strong>
+                  <span>{l}</span>
+                </Reveal>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section id="como-funciona">
+      {/* ---------------- Preço ---------------- */}
+      <section id="preco">
         <div className="wrap">
-          <div className="section-head">
-            <span className="mono">Como funciona</span>
-            <h2>Do pedido ao MP4</h2>
-            <p>O Claude não “gera” o vídeo como uma imagem de IA. Ele escreve cada cena em código, e o seu computador transforma esse código em vídeo, quadro a quadro.</p>
-          </div>
-          <div className="grid grid-4">
-            {steps.map((s, i) => (
-              <div className="card" key={s.t}>
-                <span className="step-num">{String(i + 1).padStart(2, '0')}</span>
-                <h3>{s.t}</h3>
-                <p>{s.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="estilos">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="mono">4 estilos + o da sua marca</span>
-            <h2>O mesmo roteiro, outro visual</h2>
-            <p>Troque o estilo do vídeo inteiro com uma palavra. Ou passe as cores da sua marca e o Claude cria um tema só seu.</p>
-          </div>
-          <div className="grid grid-4">
-            {themes.map((t) => (
-              <div className="card theme" key={t.name}>
-                <img src={t.img} alt={`Exemplo do tema ${t.name}`} loading="lazy" />
-                <div>
-                  <h3>{t.name}</h3>
-                  <p>{t.d}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="transicoes">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="mono">21 transições</span>
-            <h2>Cortes com intenção</h2>
-            <p>Rápidas para Reels, lentas para clima de cinema. O Claude escolhe de acordo com o que você pedir, ou você escolhe pelo nome.</p>
-          </div>
-          <video className="wide-video" src="/media/transicoes.mp4" autoPlay muted loop playsInline preload="none" aria-label="Todas as transições em sequência" />
-          <div className="chips">
-            {transitions.map((t) => (
-              <span className="chip" key={t}>
-                {t}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="o-que-vem">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="mono">O que vem no kit</span>
-            <h2>Tudo pronto para usar</h2>
-          </div>
-          <ul className="checklist">
-            {kit.map((k) => (
-              <li key={k.t}>
-                <div>
-                  <strong>{k.t}</strong>
-                  <span>{k.d}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section id="requisitos">
-        <div className="wrap">
-          <div className="section-head">
-            <span className="mono">Requisitos</span>
-            <h2>O que você precisa ter</h2>
-          </div>
-          <div className="grid grid-4">
-            <div className="card">
-              <h3>Sistema</h3>
-              <p>macOS 13+, Windows 10+ ou Linux</p>
-            </div>
-            <div className="card">
-              <h3>Claude Code</h3>
-              <p>Plano pago da Anthropic: Pro, Max, Team, Enterprise ou Console. Vendido à parte.</p>
-            </div>
-            <div className="card">
-              <h3>Node.js 18+</h3>
-              <p>Gratuito, em nodejs.org. O instalador confere a versão.</p>
-            </div>
-            <div className="card">
-              <h3>Espaço</h3>
-              <p>Cerca de 600 MB livres para o projeto e o navegador de renderização.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="comprar">
-        <div className="wrap">
-          <div className="card price-box">
-            <span className="mono">Pagamento único</span>
+          <Reveal className="glass price-card">
+            <span className="eyebrow">Pagamento único</span>
             <div className="price">
               {price}
-              <small>à vista, sem mensalidade</small>
+              <small>sem mensalidade · Pix ou cartão pelo Mercado Pago</small>
             </div>
-            <p style={{color: 'var(--muted)'}}>Skill + projeto com 19 cenas, 21 transições e 4 estilos. Atualizações da versão 1 incluídas.</p>
-            <BuyForm label="Comprar agora" big />
-            <p className="fineprint">
-              Pix ou cartão pelo Mercado Pago. Já comprou? <a href="/acesso">Acessar minha compra</a>
+            <ul className="includes">
+              {includes.map((i) => (
+                <li key={i}>
+                  <CheckCircle size={18} weight="fill" aria-hidden="true" />
+                  {i}
+                </li>
+              ))}
+            </ul>
+            <BuyButton label="Quero o Motion Pronto" />
+            <div className="guarantee">
+              <ShieldCheck size={20} weight="fill" aria-hidden="true" />
+              <span>
+                <strong>7 dias para pedir reembolso.</strong> Não gostou? Peça o dinheiro de volta pelo Mercado Pago, sem precisar explicar.
+              </span>
+            </div>
+            <p className="muted" style={{fontSize: 14, lineHeight: '20px'}}>
+              Requer Claude Code, vendido à parte pela Anthropic. Já comprou?{' '}
+              <a href="/acesso" className="accent">
+                Acessar minha compra
+              </a>
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------- Dúvidas ---------------- */}
+      <section id="duvidas">
+        <div className="wrap">
+          <Reveal className="head">
+            <span className="eyebrow">Dúvidas</span>
+            <h2>Perguntas frequentes</h2>
+          </Reveal>
+          <div className="faq">
+            {faqs.map((f, i) => (
+              <Reveal key={f.q} as="details" delay={Math.min(i, 4) * 60} className="glass">
+                <summary>
+                  {f.q}
+                  <Plus size={18} weight="bold" aria-hidden="true" />
+                </summary>
+                <p>{f.a}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="duvidas">
+      {/* ---------------- CTA final ---------------- */}
+      <section className="final">
         <div className="wrap">
-          <div className="section-head">
-            <span className="mono">Dúvidas</span>
-            <h2>Perguntas frequentes</h2>
-          </div>
-          <div className="faq">
-            {faqs.map((f) => (
-              <details key={f.q}>
-                <summary>{f.q}</summary>
-                <p>{f.a}</p>
-              </details>
-            ))}
-          </div>
+          <Reveal className="glass">
+            <span className="eyebrow">Comece hoje</span>
+            <h2>O próximo vídeo do seu perfil pode sair de uma frase</h2>
+            <BuyButton label={`Quero o Motion Pronto · ${price}`} />
+            <p className="muted" style={{fontSize: 14, lineHeight: '20px', display: 'inline-flex', alignItems: 'center', gap: 8}}>
+              <ArrowsOutSimple size={16} aria-hidden="true" /> Funciona com qualquer plano pago do Claude Code
+            </p>
+          </Reveal>
         </div>
       </section>
 
       <footer className="footer">
         <div className="wrap">
-          <span className="logo">Motion Pronto</span>
-          <p>
-            Motion Pronto é um produto independente e não tem afiliação, patrocínio ou aprovação da Anthropic ou do Remotion. Claude e Claude Code são marcas da
-            Anthropic. Remotion é marca de seus respectivos donos.
-          </p>
-          <p>
+          <span className="brand">
+            <span className="brand-mark" aria-hidden="true">
+              M
+            </span>
+            Motion Pronto
+          </span>
+          <nav aria-label="Rodapé">
             <a href="/acesso">Acessar minha compra</a>
+            <a href="/termos">Termos de uso</a>
+            <a href="/privacidade">Privacidade</a>
+          </nav>
+          <p>
+            Motion Pronto é um produto independente, sem afiliação, patrocínio ou aprovação da Anthropic ou do Remotion. Claude e Claude Code são
+            marcas da Anthropic.
           </p>
         </div>
       </footer>
