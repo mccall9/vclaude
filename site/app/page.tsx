@@ -149,7 +149,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               <span>›</span> cria um vídeo de 30s apresentando o Motion Pronto, estilo clean, com narração
             </div>
             <div className="float float-done glass mono" aria-hidden="true">
-              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 31,8 s
+              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 34,6 s
             </div>
           </Reveal>
         </div>
@@ -308,7 +308,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
                 </p>
                 <p className="claude">● Escrevi 8 falas e gerei a narração. Abri a prévia no navegador.</p>
                 <p className="claude">● Conferi os quadros: nenhum texto saindo da tela.</p>
-                <p className="claude">● Pronto: out/demo.mp4 (31,8 s · 1080×1920 · com voz e som)</p>
+                <p className="claude">● Pronto: out/demo.mp4 (34,6 s · 1080×1920 · com voz e som)</p>
                 <p>
                   <span className="you">› </span>deixa o final mais lento e faz uma versão horizontal
                 </p>
