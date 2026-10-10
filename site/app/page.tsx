@@ -27,10 +27,12 @@ const BuyButton = ({label}: {label: string}) => (
 );
 
 const styles = [
-  {name: 'Ember', d: 'escuro com laranja', img: '/media/tema-0.jpg'},
-  {name: 'Neon', d: 'ciano e magenta', img: '/media/tema-1.jpg'},
-  {name: 'Paper', d: 'editorial claro', img: '/media/tema-2.jpg'},
-  {name: 'Mono', d: 'preto e branco', img: '/media/tema-3.jpg'},
+  {name: 'Studio', d: 'claro e limpo', img: '/media/tema-0.jpg'},
+  {name: 'Grafite', d: 'escuro e sóbrio', img: '/media/tema-1.jpg'},
+  {name: 'Ember', d: 'laranja com brilho', img: '/media/tema-2.jpg'},
+  {name: 'Neon', d: 'ciano e magenta', img: '/media/tema-3.jpg'},
+  {name: 'Paper', d: 'editorial', img: '/media/tema-4.jpg'},
+  {name: 'Mono', d: 'preto e branco', img: '/media/tema-5.jpg'},
 ];
 
 const scenes = ['título', 'tipografia cinética', 'impacto', 'prompt', 'código', 'cartões', 'antes e depois', 'contador', 'logo', 'legendas', 'chamada final', '+8'];
@@ -59,7 +61,8 @@ const steps = [
 const includes = [
   'Skill Motion Pronto para o Claude Code',
   'Projeto de vídeo com 19 cenas e 21 transições',
-  '4 estilos prontos e tema com as cores da sua marca',
+  '6 estilos prontos e tema com as cores da sua marca',
+  'Narração por voz: ElevenLabs ou voz local gratuita',
   'Efeitos sonoros próprios, livres para uso comercial',
   'Instalador para macOS, Windows e Linux',
   'Atualizações da versão 1',
@@ -70,7 +73,7 @@ const faqs = [
   {q: 'O Claude Code está incluso?', a: 'Não. O Claude Code é da Anthropic e pede um plano pago (Pro, Max, Team, Enterprise ou créditos no Console), contratado direto com eles. O Motion Pronto é a skill e o projeto de vídeo que você usa junto.'},
   {q: 'O que eu preciso ter no computador?', a: 'macOS 13 ou mais novo, Windows 10 ou mais novo, ou Linux. Node.js 18 ou mais novo (gratuito, em nodejs.org) e uns 600 MB livres. O instalador confere tudo antes de começar.'},
   {q: 'O vídeo é gerado na nuvem?', a: 'Não. Tudo roda no seu computador, com o Remotion. Seus arquivos não saem da sua máquina.'},
-  {q: 'Os vídeos têm som?', a: 'Sim. Transições, impactos, digitação e contadores vêm com efeitos sonoros no tempo certo. Você pode baixar o volume, desligar ou colocar a sua música.'},
+  {q: 'Os vídeos têm voz e som?', a: 'Sim. O Claude escreve a narração e gera a voz pela ElevenLabs (com a sua conta) ou por uma voz local gratuita. Transições, digitação e contadores vêm com efeitos sonoros no tempo certo, e você pode colocar a sua música.'},
   {q: 'Posso usar os vídeos comercialmente?', a: 'Sim, os vídeos que você cria são seus. O Remotion é gratuito para pessoas físicas e empresas com até 3 funcionários; empresas maiores precisam de uma licença do Remotion.'},
   {q: 'O que o Motion Pronto não faz?', a: 'Não gera imagens ou vídeos realistas por IA e não edita filmagem com cortes de câmera. Ele faz motion design: tipografia, formas, interfaces e legendas, e pode usar suas fotos e vídeos dentro das cenas.'},
   {q: 'Como recebo o kit?', a: 'Assim que o Mercado Pago aprovar o pagamento, você volta para o site e baixa o ZIP. Pix costuma aprovar na hora. Se fechar a página, use o número do pagamento e seu email em “Acessar minha compra”.'},
@@ -85,9 +88,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
   return (
     <main>
       {/* ---------------- Hero ---------------- */}
-      <div className="ambient" aria-hidden="true">
-        <video src="/media/demo.mp4" autoPlay muted loop playsInline preload="metadata" tabIndex={-1} />
-      </div>
+      <div className="ambient" aria-hidden="true" />
       <section className="hero">
         <div className="wrap hero-grid">
           <div className="hero-copy">
@@ -126,7 +127,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
                 <ShieldCheck size={16} weight="fill" aria-hidden="true" /> 7 dias para pedir reembolso
               </span>
               <span>
-                <SpeakerHigh size={16} weight="fill" aria-hidden="true" /> Vídeos com som
+                <SpeakerHigh size={16} weight="fill" aria-hidden="true" /> Narração e efeitos sonoros
               </span>
             </Reveal>
           </div>
@@ -145,10 +146,10 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               />
             </div>
             <div className="float float-prompt glass mono" aria-hidden="true">
-              <span>›</span> cria um vídeo de 25s apresentando o Motion Pronto, tema ember
+              <span>›</span> cria um vídeo de 30s apresentando o Motion Pronto, estilo clean, com narração
             </div>
             <div className="float float-done glass mono" aria-hidden="true">
-              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 28,3 s
+              <CheckCircle size={18} weight="fill" /> out/demo.mp4 · 31,8 s
             </div>
           </Reveal>
         </div>
@@ -195,7 +196,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               <div className="icon">
                 <Palette size={22} weight="duotone" aria-hidden="true" />
               </div>
-              <h3>4 estilos e o da sua marca</h3>
+              <h3>6 estilos e o da sua marca</h3>
               <p>Troque o visual inteiro com uma palavra, ou passe as cores da marca e ganhe um tema só seu.</p>
               <div className="styles-grid">
                 {styles.map((s) => (
@@ -232,8 +233,8 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               <div className="icon">
                 <SpeakerHigh size={22} weight="duotone" aria-hidden="true" />
               </div>
-              <h3>Som no tempo certo</h3>
-              <p>Whoosh nos cortes, impacto nas palavras grandes, teclas na digitação.</p>
+              <h3>Voz e som no tempo certo</h3>
+              <p>Narração em português e efeitos sonoros nos cortes, na digitação e nos números.</p>
               <div className="wave" aria-hidden="true">
                 {wave.map((h, i) => (
                   <i key={i} style={{height: h}} />
@@ -301,13 +302,13 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               </div>
               <div className="term-body">
                 <p>
-                  <span className="you">› </span>cria um vídeo vertical de 25 segundos apresentando o Motion Pronto. Abre com uma palavra de impacto, mostra
-                  alguém digitando um pedido, o código, o fluxo até o MP4, o que vem no kit, um antes e depois, o logo e um botão de compra. Tema
-                  ember.
+                  <span className="you">› </span>cria um vídeo vertical de 30 segundos apresentando o Motion Pronto, estilo clean de anúncio de produto,
+                  com narração. Mostra alguém digitando um pedido, o código, o fluxo até o MP4, o que vem no kit, um antes e depois, um botão de compra
+                  e termina na logo.
                 </p>
-                <p className="claude">● Abri a prévia no navegador. Escolhi 8 cenas e 7 transições.</p>
+                <p className="claude">● Escrevi 8 falas e gerei a narração. Abri a prévia no navegador.</p>
                 <p className="claude">● Conferi os quadros: nenhum texto saindo da tela.</p>
-                <p className="claude">● Pronto: out/demo.mp4 (28,3 s · 1080×1920 · com som)</p>
+                <p className="claude">● Pronto: out/demo.mp4 (31,8 s · 1080×1920 · com voz e som)</p>
                 <p>
                   <span className="you">› </span>deixa o final mais lento e faz uma versão horizontal
                 </p>
@@ -317,7 +318,7 @@ export default async function Home({searchParams}: {searchParams: Promise<{pagam
               {[
                 ['19', 'cenas prontas'],
                 ['21', 'transições'],
-                ['10', 'efeitos sonoros'],
+                ['6', 'estilos visuais'],
                 ['3', 'formatos de vídeo'],
               ].map(([n, l], i) => (
                 <Reveal key={l} delay={i * 80} className="fact glass">

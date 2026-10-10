@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: 'Motion Pronto · motion design por prompt',
   description:
-    'Descreva o vídeo em português e o Claude Code monta as cenas, coloca os sons e entrega o MP4. 19 cenas, 21 transições e 4 estilos, sem After Effects.',
+    'Descreva o vídeo em português e o Claude Code monta as cenas, coloca os sons e entrega o MP4. 19 cenas, 21 transições, 6 estilos e narração, sem After Effects.',
   openGraph: {
     title: 'Motion Pronto · seu próximo motion sai de uma frase',
     description: 'Descreva em português, receba o MP4. Sem After Effects, sem timeline.',

@@ -434,18 +434,11 @@ summary:focus-visible,
 /* Vídeo de demonstração desfocado atrás da página: é o que o vidro refrata */
 .ambient {
   position: fixed;
-  inset: -10%;
+  inset: 0;
   z-index: -1;
-  background: url('/media/demo-poster.jpg') center / cover no-repeat;
-  opacity: 0.3;
-  filter: blur(80px) saturate(1.6);
+  background: url('/media/ambient.jpg') center / cover no-repeat;
+  opacity: 0.4;
   pointer-events: none;
-}
-
-.ambient video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 .hero-grid {
@@ -754,7 +747,7 @@ section {
 
 @media (min-width: 640px) {
   .styles-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
